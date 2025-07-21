@@ -15,7 +15,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = libNamespace
                 artifactId = project.name
-                version = "1.1.0"
+                version = "1.1.2"
             }
         }
     }
@@ -28,12 +28,20 @@ android {
     defaultConfig {
         minSdk = 21
 
+        ndk {
+            abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
+        }
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         @Suppress("UnstableApiUsage")
         externalNativeBuild {
             @Suppress("UnstableApiUsage")
             cmake {
-                cppFlags += "-Wl,-z,max-page-size=16384"
+                arguments += listOf(
+                    "-DCMAKE_BUILD_TYPE=Release",
+                    "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-z,max-page-size=16384,-z,common-page-size=16384"
+                )
+                cppFlags += listOf("-O2", "-DNDEBUG")
             }
         }
     }
@@ -51,11 +59,6 @@ android {
     kotlin {
         compilerOptions {
             jvmTarget = JvmTarget.JVM_17
-        }
-    }
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
         }
     }
     externalNativeBuild {
