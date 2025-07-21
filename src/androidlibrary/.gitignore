@@ -28,3 +28,4 @@ local.properties
 /.idea/deviceManager.xml
 /.idea/other.xml
 /.idea/runConfigurations.xml
+/.idea/**
