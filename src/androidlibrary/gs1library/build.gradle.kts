@@ -28,10 +28,6 @@ android {
     defaultConfig {
         minSdk = 21
 
-        ndk {
-            abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
-        }
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         @Suppress("UnstableApiUsage")
         externalNativeBuild {
@@ -64,7 +60,8 @@ android {
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.22.1"
+            // Don't specify version - let JitPack use its default
+            // version = "3.22.1"
         }
     }
 }
