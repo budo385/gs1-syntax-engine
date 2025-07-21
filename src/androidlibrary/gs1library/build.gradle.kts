@@ -15,7 +15,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = libNamespace
                 artifactId = project.name
-                version = "1.1.2"
+                version = "1.1.3"
             }
         }
     }
@@ -64,7 +64,7 @@ android {
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.31.6"
+            version = "3.22.1"
         }
     }
 }

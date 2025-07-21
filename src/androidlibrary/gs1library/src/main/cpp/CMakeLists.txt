@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.31.6)
+cmake_minimum_required (VERSION 3.18.1)
 project (gs1encoders)
 
 set(version "1.0")
