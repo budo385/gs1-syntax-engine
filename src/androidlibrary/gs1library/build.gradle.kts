@@ -33,7 +33,7 @@ android {
         externalNativeBuild {
             @Suppress("UnstableApiUsage")
             cmake {
-                cppFlags += ""
+                cppFlags += "-Wl,-z,max-page-size=16384"
             }
         }
     }
