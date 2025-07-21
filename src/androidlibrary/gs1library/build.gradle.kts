@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -13,7 +15,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = libNamespace
                 artifactId = project.name
-                version = "1.0.0"
+                version = "1.1.0"
             }
         }
     }
@@ -21,10 +23,10 @@ afterEvaluate {
 
 android {
     namespace = libNamespace
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
-        minSdk = 16
+        minSdk = 21
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         @Suppress("UnstableApiUsage")
@@ -46,13 +48,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_17
+        }
     }
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.22.1"
+            version = "4.0.2"
         }
     }
 }
