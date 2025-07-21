@@ -2,6 +2,11 @@ jdk:
   - openjdk17
 before_install:
   - ./scripts/prepareJitpackEnvironment.sh
+  - echo "JitPack build starting"
+  - echo "Available CMake versions:"
+  - find $ANDROID_HOME/cmake -name "cmake" -type f 2>/dev/null || echo "No CMake found in 
+ANDROID_HOME"
+
 install:
   - echo "Android GS1 Library"
   - cd src/androidlibrary/
